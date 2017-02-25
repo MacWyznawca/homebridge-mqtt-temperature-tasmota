@@ -34,18 +34,18 @@ var mqtt    = require('mqtt');
 module.exports = function(homebridge) {
   Service = homebridge.hap.Service;
   Characteristic = homebridge.hap.Characteristic;
-  homebridge.registerAccessory("homebridge-mqtt-temperature-tasmota-tasmota", "mqtt-temperature-tasmota", TemperatureTasmotaAccessory);
+  homebridge.registerAccessory("homebridge-mqtt-temperature-tasmota", "mqtt-temperature-tasmota", TemperatureTasmotaAccessory);
 }
 
 function TemperatureTasmotaAccessory(log, config) {
   this.log = log;
-  this.name = config["name"];
-    this.manufacturer = config['manufacturer'];
- 	this.model = config['model'];
-	this.serialNumberMAC = config['serialNumberMAC'];
+	this.name = config["name"] || "Sonoff";
+  	this.manufacturer = config['manufacturer'] || "ITEAD";
+	this.model = config['model'] || "Sonoff";
+	this.serialNumberMAC = config['serialNumberMAC'] || "";
 
-  this.url = config['url'];
-  this.topic = config['topic'];
+  	this.url = config['url'];
+  	this.topic = config['topic'];
 	if (config["activityTopic"] !== undefined) {
 		this.activityTopic = config["activityTopic"];
 		this.activityParameter = config["activityParameter"];

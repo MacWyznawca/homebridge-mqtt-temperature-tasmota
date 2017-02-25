@@ -1,6 +1,6 @@
 {
   "name": "homebridge-mqtt-temperature-tasmota",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "Plugin to HomeBridge optimized for work with Itead Sonoff and Electrodragon Relay Board hardware with firmware Sonoff-Tasmota via MQTT.",
   "main": "index.js",
   "scripts": {
@@ -31,7 +31,8 @@
 	"DHT22",
 	"DHT11",
 	"AM2301",
-	"AM2302"
+	"AM2302",
+	"temperature"
   ],
   "author": "Jaromir Kopp",
   "license": "MIT",
