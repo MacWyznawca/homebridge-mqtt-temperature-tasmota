@@ -102,12 +102,12 @@ function TemperatureTasmotaAccessory(log, config) {
   	this.client.on('message', function (topic, message) {
 		if (topic == that.topic) {
 			data = JSON.parse(message);
-			if (data === null) {return null}
-			if (data.hasOwnProperty("DS18B20")) {
-				that.temperature = parseFloat(parseFloat(data.DS18B20.Temperature));
-			 }
-			 else  if (data.hasOwnProperty("DHT")) { 
-				that.temperature = parseFloat(parseFloat(data.DHT.Temperature));
+			if (data === null) {
+				that.temperature = parseFloat(message);
+			} else if (data.hasOwnProperty("DS18B20")) {
+				that.temperature = parseFloat(data.DS18B20.Temperature);
+			} else if (data.hasOwnProperty("DHT")) {
+				that.temperature = parseFloat(data.DHT.Temperature);
 			}
 			that.service.setCharacteristic(Characteristic.CurrentTemperature, that.temperature);
 		} else if (topic == that.activityTopic) {
