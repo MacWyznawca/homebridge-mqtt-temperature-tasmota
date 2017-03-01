@@ -19,6 +19,8 @@
 		"startCmd": "cmnd/sonoff/TelePeriod",
 		"startParameter": "120",
 
+		"sensorPropertyName": "BME280_2",
+
 		"manufacturer": "ITEAD",
 		"model": "Sonoff TH",
 		"serialNumberMAC": "MAC OR SERIAL NUMBER"
@@ -46,6 +48,9 @@ function TemperatureTasmotaAccessory(log, config) {
 
   	this.url = config['url'];
   	this.topic = config['topic'];
+	
+	this.sensorPropertyName = config["sensorPropertyName"] || "Sensor";
+	
 	if (config["activityTopic"] !== undefined) {
 		this.activityTopic = config["activityTopic"];
 		this.activityParameter = config["activityParameter"];
@@ -102,6 +107,7 @@ function TemperatureTasmotaAccessory(log, config) {
   	this.client.on('message', function (topic, message) {
 		if (topic == that.topic) {
 			data = JSON.parse(message);
+			that.temperature -49.9;
 			if (data === null) {
 				that.temperature = parseFloat(message);
 			} else if (data.hasOwnProperty("DS18B20")) {
@@ -116,7 +122,17 @@ function TemperatureTasmotaAccessory(log, config) {
 				that.temperature = parseFloat(data.AM2301.Temperature);
 			} else if (data.hasOwnProperty("DHT11")) {
 				that.temperature = parseFloat(data.DHT11.Temperature);
-			}
+			} else if (data.hasOwnProperty("HTU21")) {
+				that.temperature = parseFloat(data.HTU21.Temperature);
+			} else if (data.hasOwnProperty("BMP280")) {
+				that.temperature = parseFloat(data.BMP280.Temperature);
+			} else if (data.hasOwnProperty("BME280")) {
+				that.temperature = parseFloat(data.BME280.Temperature);
+			} else if (data.hasOwnProperty("BMP180")) {
+				that.temperature = parseFloat(data.BMP180.Temperature);
+			} else if (data.hasOwnProperty(that.sensorPropertyName)) {
+				that.temperature = parseFloat(data[that.sensorPropertyName].Temperature);
+			} else {return null}
 			that.service.setCharacteristic(Characteristic.CurrentTemperature, that.temperature);
 		} else if (topic == that.activityTopic) {
 			var status = message.toString(); 	

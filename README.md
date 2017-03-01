@@ -98,3 +98,4 @@ Sample HomeBridge Configuration (minimal)
 
 **"startParameter": "60"** - payload for **startCmd**.
 
+**"sensorPropertyName": "BME280-2"** - custom Property name for sensor (see accessory WWW console for tips:  {"Time":"2017-03-01T08:47:19", "**DHT22-2**":{"Temperature":4.6, "Humidity":71.7}})
