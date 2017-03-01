@@ -106,8 +106,16 @@ function TemperatureTasmotaAccessory(log, config) {
 				that.temperature = parseFloat(message);
 			} else if (data.hasOwnProperty("DS18B20")) {
 				that.temperature = parseFloat(data.DS18B20.Temperature);
+			} else if (data.hasOwnProperty("DS18x20")) {
+				that.temperature = parseFloat(data.DS18x20.Temperature);
 			} else if (data.hasOwnProperty("DHT")) {
 				that.temperature = parseFloat(data.DHT.Temperature);
+			} else if (data.hasOwnProperty("DHT22")) {
+				that.temperature = parseFloat(data.DHT22.Temperature);
+			} else if (data.hasOwnProperty("AM2301")) {
+				that.temperature = parseFloat(data.AM2301.Temperature);
+			} else if (data.hasOwnProperty("DHT11")) {
+				that.temperature = parseFloat(data.DHT11.Temperature);
 			}
 			that.service.setCharacteristic(Characteristic.CurrentTemperature, that.temperature);
 		} else if (topic == that.activityTopic) {
