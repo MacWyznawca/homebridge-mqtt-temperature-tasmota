@@ -27,6 +27,8 @@
 
 			"startCmd": "cmnd/sonoff/TelePeriod",
 			"startParameter": "120",
+			
+			"sensorPropertyName": "DS1",
 
 			"manufacturer": "ITEAD",
 			"model": "Sonoff TH",

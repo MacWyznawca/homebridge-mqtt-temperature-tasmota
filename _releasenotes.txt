@@ -1,0 +1,7 @@
+/* 
+ * 0.9.1 20170414
+ * Better JSON parse
+ * 
+ * 0.0.1 20170227
+ * First npm public release 
+ */

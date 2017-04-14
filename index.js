@@ -88,7 +88,7 @@ function TemperatureTasmotaAccessory(log, config) {
   this.client  = mqtt.connect(this.url, this.options);
   
   	this.client.on('error', function () {
-		that.log('Error event on MQTT');
+		that.log('Error event on MQTT')
 	});
 
   // Eksperyment z wymuszaniem statusu
@@ -106,14 +106,17 @@ function TemperatureTasmotaAccessory(log, config) {
 
   	this.client.on('message', function (topic, message) {
 		if (topic == that.topic) {
-			data = JSON.parse(message);
-			that.temperature -49.9;
+			that.temperature = -49.9
+			data = null
+			try {
+				data = JSON.parse(message);
+			} catch (e) {
+				that.log('JSON input Error',e)
+			}
 			if (data === null) {
 				that.temperature = parseFloat(message);
 			} else if (data.hasOwnProperty("DS18B20")) {
 				that.temperature = parseFloat(data.DS18B20.Temperature);
-			} else if (data.hasOwnProperty("DS18x20")) {
-				that.temperature = parseFloat(data.DS18x20.Temperature);
 			} else if (data.hasOwnProperty("DHT")) {
 				that.temperature = parseFloat(data.DHT.Temperature);
 			} else if (data.hasOwnProperty("DHT22")) {

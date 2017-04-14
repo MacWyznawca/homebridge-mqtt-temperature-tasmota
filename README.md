@@ -44,12 +44,14 @@ Sample HomeBridge Configuration (complete)
 			"startCmd": "cmnd/sonoff/TelePeriod",
 			"startParameter": "120",
 			
+			"sensorPropertyName": "DS1",
+			
 			"manufacturer": "ITEAD",
 			"model": "Sonoff TH",
 			"serialNumberMAC": "MAC OR SERIAL NUMBER"
 			
 		}
-	]
+	] 
 }
 
 Sample HomeBridge Configuration (minimal)
@@ -98,4 +100,4 @@ Sample HomeBridge Configuration (minimal)
 
 **"startParameter": "60"** - payload for **startCmd**.
 
-**"sensorPropertyName": "BME280-2"** - custom Property name for sensor (see accessory WWW console for tips:  {"Time":"2017-03-01T08:47:19", "**DHT22-2**":{"Temperature":4.6, "Humidity":71.7}})
+**"sensorPropertyName": "DS1"** - custom Property name for sensor (see accessory WWW console for tips:  {"Time":"2017-03-01T08:47:19", "**DS1**":{"Temperature":4.6, "Humidity":71.7}})

@@ -1,6 +1,6 @@
 {
   "name": "homebridge-mqtt-temperature-tasmota",
-  "version": "0.1.2",
+  "version": "0.9.1",
   "description": "Plugin to HomeBridge optimized for work with Itead Sonoff and Electrodragon Relay Board hardware with firmware Sonoff-Tasmota via MQTT. Also works with other accessories sending the temperature as a number (payload ex. 21.1).",
   "main": "index.js",
   "scripts": {
