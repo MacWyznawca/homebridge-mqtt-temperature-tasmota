@@ -115,6 +115,8 @@ function TemperatureTasmotaAccessory(log, config) {
 			}
 			if (data === null) {
 				that.temperature = parseFloat(message);
+			} else if (data.hasOwnProperty(that.sensorPropertyName)) {
+				that.temperature = parseFloat(data[that.sensorPropertyName].Temperature);
 			} else if (data.hasOwnProperty("DS18B20")) {
 				that.temperature = parseFloat(data.DS18B20.Temperature);
 			} else if (data.hasOwnProperty("DHT")) {
@@ -133,8 +135,6 @@ function TemperatureTasmotaAccessory(log, config) {
 				that.temperature = parseFloat(data.BME280.Temperature);
 			} else if (data.hasOwnProperty("BMP180")) {
 				that.temperature = parseFloat(data.BMP180.Temperature);
-			} else if (data.hasOwnProperty(that.sensorPropertyName)) {
-				that.temperature = parseFloat(data[that.sensorPropertyName].Temperature);
 			} else {return null}
 			that.service.setCharacteristic(Characteristic.CurrentTemperature, that.temperature);
 		} else if (topic == that.activityTopic) {
