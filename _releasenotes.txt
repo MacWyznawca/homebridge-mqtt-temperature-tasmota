@@ -1,4 +1,7 @@
 /* 
+ * 0.9.2 20170415
+ * Sensor property name should have higher priority than others.
+ * 
  * 0.9.1 20170414
  * Better JSON parse
  * 
