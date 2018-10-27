@@ -12,6 +12,8 @@
 		"password": "MQTT PASSWORD",
 
 		"topic": "tele/sonoff/SENSOR",
+		
+		"units": "F",
 
 		"activityTopic": "tele/sonoff/LWT",
 		"activityParameter": "Online",
@@ -48,6 +50,8 @@ function TemperatureTasmotaAccessory(log, config) {
 
   	this.url = config['url'];
   	this.topic = config['topic'];
+
+	this.units = config['units'];
 	
 	this.sensorPropertyName = config["sensorPropertyName"] || "Sensor";
 	
@@ -136,6 +140,9 @@ function TemperatureTasmotaAccessory(log, config) {
 			} else if (data.hasOwnProperty("BMP180")) {
 				that.temperature = parseFloat(data.BMP180.Temperature);
 			} else {return null}
+			if (that.units == "F"){
+				that.temperature = (that.temperature - 32) * (5/9)
+			}
 			that.service.setCharacteristic(Characteristic.CurrentTemperature, that.temperature);
 		} else if (topic == that.activityTopic) {
 			var status = message.toString(); 	
